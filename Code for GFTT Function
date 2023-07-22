@@ -1,0 +1,14 @@
+GFTT FUNCTION:
+
+function XF = gfft(X,N,k)
+if length(X) <N
+    XE= [X zeros(1,N-length(X))]
+else
+    XE = X;
+end
+x1 = [XE 0]
+dl = 2*cos(2*pi*k/N)
+W = exp(-1i*2*pi*k/N)
+y = filter(1, [1 -dl 1], x1);
+XF =y(N+1)-W*y(N);
+end
